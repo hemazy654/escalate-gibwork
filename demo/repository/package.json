@@ -1,0 +1,1 @@
+{"name":"retry-policy-demo","private":true,"type":"module","scripts":{"test":"node --test build/tests/retry.test.js"}}

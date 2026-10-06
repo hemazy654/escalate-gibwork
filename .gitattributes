@@ -1,0 +1,2 @@
+# Keep fixture bytes and patch hashes consistent across checkout platforms.
+* text=auto eol=lf

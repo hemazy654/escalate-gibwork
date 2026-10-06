@@ -1,0 +1,8 @@
+[
+  {
+    "id": "retry-policy-human-fix",
+    "taskId": "retry-policy-task",
+    "status": "OPEN",
+    "content": "I reproduced the client-error retry bug and restricted the predicate to HTTP 429 or the inclusive 500\u2013599 range. No tests or dependencies changed. Candidate patch: demo/solution.patch\nSHA-256: 2714852c2b1a12653b3a97b0d2f93d0dc2800bca9c5c1d4b86a543553b1b2847\n\ndiff --git a/src/retry.ts b/src/retry.ts\n--- a/src/retry.ts\n+++ b/src/retry.ts\n@@ -1,5 +1,5 @@\n /** Whether an HTTP response should be retried by our API client. */\n export function shouldRetry(status: number): boolean {\n   // Only rate limits (429) and server failures (500\u2013599) are retryable.\n-  return status >= 400;\n+  return status === 429 || (status >= 500 && status <= 599);\n }\n"
+  }
+]

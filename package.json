@@ -1,0 +1,57 @@
+{
+  "name": "escalate-cli",
+  "version": "0.1.0",
+  "description": "Safely hand repeated AI coding failures to humans through Gibwork and validate candidate fixes",
+  "type": "module",
+  "bin": {
+    "escalate": "dist/cli.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "npm run build && node --import tsx --test tests/*.test.ts",
+    "check": "tsc --noEmit && tsc -p tsconfig.tests.json",
+    "demo": "npm run build --silent && node dist/demo/main.js",
+    "docker:prepare": "npm run build --silent && node dist/validation/prepare.js",
+    "test:docker": "npm run build --silent && node --import tsx --test tests/docker.integration.ts",
+    "verify:live": "npm run build --silent && node dist/gibwork/verify-live.js",
+    "verify:live:phantom": "npm run build --silent && node dist/phantom/live.js",
+    "verify:phantom": "npm run build --silent && node dist/phantom/verify.js",
+    "inspect:prepared": "npm run build --silent && node dist/security/inspect.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@gibwork/sdk": "0.2.0",
+    "commander": "^15.0.0",
+    "zod": "^4.6.5",
+    "@solana/web3.js": "1.99.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  },
+  "private": true,
+  "keywords": [
+    "gibwork",
+    "ai-agents",
+    "cli",
+    "typescript",
+    "human-in-the-loop"
+  ],
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hemazy654/escalate-gibwork.git"
+  },
+  "homepage": "https://github.com/hemazy654/escalate-gibwork#readme",
+  "bugs": {
+    "url": "https://github.com/hemazy654/escalate-gibwork/issues"
+  }
+}

@@ -1,0 +1,26 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.escalate/
+*.pem
+*.key
+coverage/
+
+# Local wallet/auth/evidence material; public fixtures stay explicitly named in tests/demo.
+wallet.json
+wallet-*.json
+*-wallet.json
+keypair.json
+*-keypair.json
+id.json
+*private-key*
+*seed-phrase*
+*recovery-phrase*
+*signing-evidence*.json
+*live-readonly-evidence*.json
+*prepared-review*.json
+*auth-session*.json
+*.log
+.DS_Store

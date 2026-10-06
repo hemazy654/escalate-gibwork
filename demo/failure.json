@@ -1,0 +1,9 @@
+{
+  "task": "Fix retry policy: retry HTTP 429 and 500–599 without retrying client errors",
+  "files": ["src/retry.ts", "tests/retry.test.ts", "src/diagnostics.ts"],
+  "attempts": [
+    {"summary":"Raised the threshold from 400 to 500, inadvertently excluding rate limits.","outcome":"fail","output":"retry.test.ts: expected shouldRetry(429) to equal true; received false"},
+    {"summary":"Special-cased 429 and 503, overlooking other server failures.","outcome":"fail","output":"retry.test.ts: expected shouldRetry(500) to equal true; received false"},
+    {"summary":"Accepted 429 or status >= 500, but forgot the upper bound. Reverted to the baseline after failure.","outcome":"fail","output":"retry.test.ts: expected shouldRetry(600) to equal false; received true\nAPI_KEY=DEMO_ONLY_NOT_A_REAL_CREDENTIAL"}
+  ]
+}

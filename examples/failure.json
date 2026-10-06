@@ -1,0 +1,1 @@
+{"task":"Fix the engine regression","files":["src/engine.ts"],"attempts":[{"summary":"Adjusted parsing","outcome":"fail","output":"Expected 2, got 1"},{"summary":"Changed boundary handling","outcome":"fail","output":"Expected 2, got 1"},{"summary":"Reverted and tried another fix","outcome":"fail","output":"Expected 2, got 1"}]}

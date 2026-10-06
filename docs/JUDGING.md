@@ -1,0 +1,17 @@
+# ESCALATE: judging brief
+
+**Problem.** AI coding agents can repeatedly fail the same task, burning time and context while a small human intervention would unblock them. A useful handoff requires the relevant source, reproducible failure evidence and clear acceptance criteria, not another vague issue.
+
+**Why agents need it.** ESCALATE treats trailing failed attempts as an escalation signal, packages bounded repository context and carries the failure history forward. An agent or CI system supplies the report; the initial implementation does not watch or control an agent automatically.
+
+**Why Gibwork is essential.** Gibwork supplies the human-work marketplace and bounty/submission contract between the failed agent task and a human candidate solution. ESCALATE uses the official `@gibwork/sdk` as a runtime dependency: submission review executes its real wallet-authenticated request construction and response path through an in-memory transport. The bounty draft matches its `CreateTaskInput`. The offline path proves the handoff contract; a separate manually approved SDK 0.2.0 discovery read succeeded with HTTP 200. No funded bounty or live human submission is claimed.
+
+**Novelty.** ESCALATE centers the failure-to-human-to-agent loop: repeated failure evidence → carefully selected, redacted committed context → bounty-ready handoff → human patch → reproducible validation evidence. Existing examples focus on generic bounty lifecycle management, issue/TODO triage and release checks. See `GIBWORK.md` for the comparison and its limits.
+
+**Safety and privacy.** Committed Git blobs prevent worktree/symlink substitution and keep context aligned to the pinned baseline. Size limits and path exclusions restrict context; heuristic redaction removes common secrets. Drafts stay private and local. Production review uses a network-disabled, resource-limited Docker container with no wallet, original repository or Docker socket mount. The bundled demo executes only its verified fixture and exact patch locally and labels isolation as none. Verdicts are advisory, never payment authority. A maintainer must inspect context, tests and patches.
+
+**What works now.** All three commands, strict schemas, failure detection, relevant-file selection, redaction, structured JSON output/errors, deterministic bounty drafts, official-SDK-backed mock submission retrieval, verified actual Docker validation, and the real local FAIL-to-PASS demo. `npm run demo` exercises the full story and emits inspectable artifacts. Tests include repeatability, patch association, context integrity and demo refusal of external code.
+
+**Intentionally disabled.** Transaction signing, bounty creation/funding, paid submission creation, submission approvals/payouts/refunds and all monetary operations. The normal commands remain offline; the separate one-shot discovery utility requires manual Phantom message approval. No automatic merge or agent resumption occurs. Actual Docker execution and its isolation probes have passed. The Phase B spending guard is non-signing and rejects unknown effects; no real prepare quote has been obtained. Upstream SDK licensing and dependency advisories also remain unresolved concerns; the successful harmless read does not establish monetary safety or licensing permission.
+
+**Try it.** Node 22+ and Git → `npm ci` → `npm run demo`. No Docker or credentials are required for the bundled offline demonstration. See `DEMO.md` for the 2–3 minute recording script.
